@@ -8,7 +8,7 @@ import App from './components/App.jsx';
 
 import alt from './lib/alt';
 import storage from './lib/storage';
-import persist from './lib/persist';
+import persist from './lib/persists';
 
 persist(alt, storage, 'app');
 

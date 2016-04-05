@@ -1,3 +1,5 @@
+'use strict';
+
 import makeFinalStore from 'alt-utils/lib/makeFinalStore';
 
 export default (alt, storage, storeName) => {
@@ -10,7 +12,7 @@ export default (alt, storage, storeName) => {
     }
 
     finalStore.listen(() => {
-        if (!store.get('debug')) {
+        if (!storage.get('debug')) {
             storage.set(storeName, alt.takeSnapshot());
         }
     });
