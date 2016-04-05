@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Note from './Note.jsx';
+import Note from './Note';
 
 export default ({notes, onEdit, onDelete}) => {
     return (

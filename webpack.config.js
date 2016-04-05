@@ -29,7 +29,7 @@ const common = {
                 include: PATHS.app
             },
             {
-                test: /\.jsx?$/,
+                test: /\.js?$/,
                 loader: ['babel'],
                 query: {
                     cacheDirectory: true,
