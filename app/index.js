@@ -1,5 +1,3 @@
-'use strict';
-
 import 'style!css!./main.css';
 
 import React from 'react';

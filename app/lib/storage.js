@@ -1,5 +1,3 @@
-'use strict';
-
 export default {
     get(key) {
         try {
@@ -12,4 +10,4 @@ export default {
     set(key, value) {
         localStorage.setItem(key, JSON.stringify(value));
     }
-}
+};

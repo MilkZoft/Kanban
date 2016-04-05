@@ -1,5 +1,3 @@
-'use strict';
-
 import uuid from 'node-uuid';
 import alt from '../lib/alt';
 import NoteActions from '../actions/NoteActions';

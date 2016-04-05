@@ -1,5 +1,3 @@
-'use strict';
-
 import makeFinalStore from 'alt-utils/lib/makeFinalStore';
 
 export default (alt, storage, storeName) => {
@@ -7,7 +5,7 @@ export default (alt, storage, storeName) => {
 
     try {
         alt.bootstrap(storage.get(storeName));
-    } catch(e) {
+    } catch (e) {
         console.error('Failed to bootstrap data', e);
     }
 
@@ -16,4 +14,4 @@ export default (alt, storage, storeName) => {
             storage.set(storeName, alt.takeSnapshot());
         }
     });
-}
+};

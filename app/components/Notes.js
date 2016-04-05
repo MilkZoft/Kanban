@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import Note from './Note';
 
@@ -9,9 +7,10 @@ export default ({notes, onEdit, onDelete}) => {
             {notes.map(note =>
                 <li className="note" key={note.id}>
                     <Note
-                        task={note.task}
+                        onDelete={onDelete.bind(null, note.id)}
                         onEdit={onEdit.bind(null, note.id)}
-                        onDelete={onDelete.bind(null, note.id)} />
+                        task={note.task}
+                    />
                 </li>
             )}
         </ul>
