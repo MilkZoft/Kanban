@@ -1,19 +1,36 @@
-import uuid from 'node-uuid';
+'use strict';
+
+import AltContainer from 'alt-container';
 import React from 'react';
-
 import Notes from './Notes.jsx';
+import NoteActions from '../actions/NoteActions';
+import NoteStore from '../stores/NoteStore';
 
-export default class App extends React.Component {
+class App extends React.Component {
+    /**
+     * @name: constructor
+     * @description: Sets the current state.
+     */
     constructor(props) {
         super(props);
 
-        this.state = {
-            notes: [
-                {id: uuid.v4(), task: 'Learn Webpack2'},
-                {id: uuid.v4(), task: 'Learn React'},
-                {id: uuid.v4(), task: 'Do laundry'}
-            ]
-        };
+        this.state = NoteStore.getState();
+    }
+
+    /**
+     * @name: componentDidMount
+     * @description: Is called before render()
+     */
+    componentDidMount() {
+        NoteStore.listen(this.storeChanged);
+    }
+
+    /**
+     * @name: componentWillUnmount
+     * @description: Is called after render()
+     */
+    componentWillUnmount() {
+        NoteStore.unlisten(this.storeChanged);
     }
 
     render() {
@@ -31,40 +48,29 @@ export default class App extends React.Component {
         );
     }
 
+    storeChanged = (state) => {
+        this.setState(state);
+    }
+
     /**
      * @name: addNote
      * @description: Adds a new note
      */
     addNote = () => {
-        this.setState({
-            notes: this.state.notes.concat([{
-                id: uuid.v4(),
-                task: 'New Task'
-            }])
+        NoteActions.create({
+            task: 'New Task'
         });
     };
 
     editNote = (id, task) => {
-        if (!task.trim()) {
-            return;
-        }
-
-        const notes = this.state.notes.map(note => {
-            if (note.id === id && task) {
-                note.task = task;
-            }
-
-            return note;
-        });
-
-        this.setState({notes});
+        NoteActions.update({id, task});
     };
 
     deleteNote = (id, e) => {
         e.stopPropagation();
 
-        this.setState({
-            notes: this.state.notes.filter(note => note.id !== id)
-        });
+        NoteActions.delete(id);
     };
 }
+
+export default App;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Note extends React.Component {
+class Note extends React.Component {
     constructor(props) {
         super(props);
 
@@ -70,3 +70,5 @@ export default class Note extends React.Component {
         return <button className="delete-note" onClick={this.props.onDelete}>x</button>;
     };
 }
+
+export default Note;
